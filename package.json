@@ -1,0 +1,25 @@
+{
+  "name": "melp",
+  "version": "1.0.0",
+  "description": "Front end test ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cacoch/melp.git"
+  },
+  "keywords": [
+    "frontend",
+    "gulp",
+    "zurb",
+    "pug"
+  ],
+  "author": "cacoch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cacoch/melp/issues"
+  },
+  "homepage": "https://github.com/cacoch/melp#readme"
+}
