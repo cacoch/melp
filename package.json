@@ -21,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/cacoch/melp/issues"
   },
-  "homepage": "https://github.com/cacoch/melp#readme"
+  "homepage": "https://github.com/cacoch/melp#readme",
+  "devDependencies": {
+    "browser-sync": "^2.24.4",
+    "gulp": "^3.9.1",
+    "gulp-pug": "^4.0.1"
+  }
 }
