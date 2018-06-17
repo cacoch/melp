@@ -3,7 +3,22 @@
  */
 $( "#ratingSort" ).click( () => {
 	console.log("Click on Rating");
-    var anchor = $('#content');
+    var contents = $('#content');
+	var elements = contents.children();
+	var arrElem = [];
+	elements.each( (i, el) => {
+		let str = el.outerHTML;
+		arrElem.push({ rating : el.dataset.rating, el : str})
+	});
+	arrElem.sort( (a,b) => {
+		return a.rating - b.rating
+	});
+	
+	var result = arrElem.reduce( (acc, curr) =>{
+		return acc + curr.el;
+	}, '');
+
+	$('#content').replaceWith(result);
 });
 
 (function() {
