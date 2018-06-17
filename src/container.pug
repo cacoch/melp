@@ -1,18 +1,20 @@
-.grid-container.full
+#empty.grid-container.full(style="display: none")
 	.grid-x.grid-padding-x
-		h2.cell #{locals.name}  
+		h2.cell [NAME] 
 	.grid-x
-		.cell.large-8 Rating #{locals.rating} 
-			//include rating.pug
+		.cell.large-8 Rating [RATING] 
+			//- include rating.pug
 			.grid-x
 				.cell.large-6
-					.cell URL #{locals.contact.site} 
-					.cell EMAIL #{locals.contact.email} 
-					.cell PHONE #{locals.contact.phone} 
+					.cell URL 
+						a(href="[URL]") [URL] 
+					.cell EMAIL 
+						a(href="mailto:[EMAIL]") [EMAIL]
+					.cell PHONE [PHONE] 
 				.cell.large-6 
-					.cell STREET #{locals.address.street}
-					.cell CITY #{locals.address.city} 
-					.cell STATE #{locals.address.state}
+					.cell STREET [STREET] 
+					.cell CITY [CITY] 
+					.cell STATE [STATE] 
 		.cell.large-4
 			//img-for-medium(src="https://placehold.it/358x312" alt="")
 			.media-object.stack-for-small

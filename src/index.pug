@@ -9,13 +9,19 @@ html.no-js(lang="en")
 		link(rel="stylesheet" href="css/custom.css")
 	body
 		h1 Hello, world!
-		include container.pug
+		// start container
+		//- include container.pug
+		#content
+		// end container
 
+
+
+		include container.pug	
 		script(src="js/jquery.min.js")
 		script(src="js/what-input.min.js")
 		script(src="js/foundation.min.js")
 		script.
 			$(document).foundation();
-		script(scr="js/custom.js")
+		script(src="js/custom.js")
 
-// set autoindent noexpandtab tabstop=4 shiftwidth=4
+//- set autoindent noexpandtab tabstop=4 shiftwidth=4
