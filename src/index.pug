@@ -9,14 +9,17 @@ html.no-js(lang="en")
 		link(rel="stylesheet" href="css/custom.css")
 	body
 		h1 Hello, world!
+		.button-group
+			a#ratingSort.button Rating 
+			a#nameSort.button Name 
 		// start container
-		//- include container.pug
 		#content
 		// end container
 
 
 
-		include container.pug	
+		#empty(style="display: none")
+			include container.pug	
 		script(src="js/jquery.min.js")
 		script(src="js/what-input.min.js")
 		script(src="js/foundation.min.js")
