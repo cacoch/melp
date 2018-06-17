@@ -4,9 +4,39 @@ var pug = require('gulp-pug');
 var reload = browserSync.reload;
 
 /**
+ * copy jquery and xx to dist directory
+ */
+gulp.task('copy-deps1', ()  => {
+	gulp.src(['node_modules/jquery/dist/jquery.min.js',
+			'node_modules/what-input/dist/what-input.min.js'])
+			//	{base : 'node_modules/foundation-sites/dist'})
+	.pipe(gulp.dest('dist/js'));
+
+});
+/**
+ * copy dependencies to dist directory
+ */
+gulp.task('copy-deps', ()  => {
+	gulp.src(['node_modules/foundation-sites/dist/css/*.min.css',
+			'node_modules/foundation-sites/dist/js/*.min.js'],
+				{base : 'node_modules/foundation-sites/dist'})
+	.pipe(gulp.dest('dist'));
+
+});
+/**
+ * copy custom js and css to dist directory
+ */
+gulp.task('copy-custom', ()  => {
+	gulp.src(['src/js/*.js',
+			'src/css/*.css'],
+				{base : 'src'})
+	.pipe(gulp.dest('dist'));
+
+});
+/**
  *  * Compile pug files into HTML
  *   */
-gulp.task('templates', function() {
+gulp.task('templates', () => {
     var RESTAURANT={
 			"id":"851f799f-0852-439e-b9b2-df92c43e7672",
 			"rating":1,
@@ -28,7 +58,9 @@ gulp.task('templates', function() {
         .src('./src/*.pug')
         .pipe(
             pug({
-                locals: RESTAURANT 
+				locals: RESTAURANT,
+				compileDebug : true,
+				pretty : true
             })
         )
         .pipe(gulp.dest('./dist/'));
@@ -38,7 +70,7 @@ gulp.task('templates', function() {
  *  * Important!!
  *   * Separate task for the reaction to `.pug` files
  *    */
-gulp.task('pug-watch', ['templates'], function() {
+gulp.task('pug-watch', ['templates', 'copy-custom'], () => {
     return reload();
 });
 
@@ -46,10 +78,11 @@ gulp.task('pug-watch', ['templates'], function() {
 /**
  *  * Serve and watch the pug files for changes
  *   */
-gulp.task('default', ['templates'], function() {
+gulp.task('default', ['templates', 'copy-deps', 'copy-deps1', 'copy-custom'], () => {
     browserSync({
-        server: './dist'
+        server: './dist' 
+			//,directory : true
     });
 
-    gulp.watch('./src/*.pug', ['pug-watch']);
+    gulp.watch(['./src/*.pug', './src/js/*.js', '.scr/css/*.css'] , ['pug-watch']);
 });
