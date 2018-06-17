@@ -1,6 +1,8 @@
 /*
- * something will be here
+ * magic can happen here 
  */
+
+
 $( "#ratingSort" ).click( () => {
 	console.log("Click on Rating");
     var contents = $('#content');
@@ -8,10 +10,30 @@ $( "#ratingSort" ).click( () => {
 	var arrElem = [];
 	elements.each( (i, el) => {
 		let str = el.outerHTML;
-		arrElem.push({ rating : el.dataset.rating, el : str})
+		arrElem.push({ name : el.dataset.name, rating : el.dataset.rating, el : str})
 	});
 	arrElem.sort( (a,b) => {
 		return a.rating - b.rating
+	});
+	
+	var result = arrElem.reduce( (acc, curr) =>{
+		return acc + curr.el;
+	}, '');
+
+	$('#content').replaceWith(result);
+});
+
+$( "#nameSort" ).click( () => {
+	console.log("Click on Name");
+    var contents = $('#content');
+	var elements = contents.children();
+	var arrElem = [];
+	elements.each( (i, el) => {
+		let str = el.outerHTML;
+		arrElem.push({ name : el.dataset.name, rating : el.dataset.rating, el : str})
+	});
+	arrElem.sort( (a,b) => {
+		return a.name.localeCompare(b.name);
 	});
 	
 	var result = arrElem.reduce( (acc, curr) =>{
