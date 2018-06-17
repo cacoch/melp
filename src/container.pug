@@ -1,13 +1,23 @@
 .grid-container.full
 	.grid-x.grid-padding-x
-		.cell #{locals.name}  
-		.cell #{locals.contact.site} 
-		.cell #{locals.contact.email} 
-		.cell #{locals.contact.phone} 
-		.cell #{locals.address.street}
-		.cell #{locals.address.city} 
-		.cell #{locals.address.state}
-		.cell MAPA
-		.cell #{locals.rating} 
+		h2.cell #{locals.name}  
+	.grid-x
+		.cell.large-8 Rating #{locals.rating} 
+			//include rating.pug
+			.grid-x
+				.cell.large-6
+					.cell URL #{locals.contact.site} 
+					.cell EMAIL #{locals.contact.email} 
+					.cell PHONE #{locals.contact.phone} 
+				.cell.large-6 
+					.cell STREET #{locals.address.street}
+					.cell CITY #{locals.address.city} 
+					.cell STATE #{locals.address.state}
+		.cell.large-4
+			//img-for-medium(src="https://placehold.it/358x312" alt="")
+			.media-object.stack-for-small
+				.media-object-section
+					.thumbnail
+						img(src="https://placehold.it/500x312" alt="")
 
 // set autoindent noexpandtab tabstop=4 shiftwidth=4
