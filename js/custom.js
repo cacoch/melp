@@ -32,8 +32,11 @@ $( "#nameSort" ).click( () => {
 		let str = el.outerHTML;
 		arrElem.push({ name : el.dataset.name, rating : el.dataset.rating, el : str})
 	});
-	arrElem.sort( (a,b) => {
-		return a.name.localeCompare(b.name);
+	arrElem.sort( (a,b) => { 
+	  var textA = a.name.toUpperCase();
+	  var textB = b.name.toUpperCase();
+
+	  return textA.localeCompare(textB);
 	});
 	
 	var result = arrElem.reduce( (acc, curr) =>{
@@ -45,11 +48,12 @@ $( "#nameSort" ).click( () => {
 
 //var map;
 
-(function() {
+(function () {
     var template = $('#empty').html();
     var anchor = $('#content');
-    var dataURL = 'https://s3-us-west-2.amazonaws.com/lgoveabucket/data_melp.json';
-   //var dataURL = "http://localhost:3000/data10.json";
+	var dataURL = "https://s3-us-west-2.amazonaws.com/lgoveabucket/data_melp.json"
+	// var dataURL = "http://localhost:3000/data10.json";
+
     $.getJSON(dataURL)
         .fail(err => {
             console.log("Error with loading " + dataURL + JSON.stringify(err));
@@ -90,7 +94,7 @@ $( "#nameSort" ).click( () => {
               // title is shown when you hover over the marker
               title: latitude + ', ' + longitude 
             });            
- */       
+  */      
 
         });
 })();
