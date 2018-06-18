@@ -43,9 +43,9 @@ $( "#nameSort" ).click( () => {
 	$('#content').replaceWith(result);
 });
 
-var map;
+//var map;
 
-function initPage() {
+(function() {
     var template = $('#empty').html();
     var anchor = $('#content');
     var dataURL = 'https://s3-us-west-2.amazonaws.com/lgoveabucket/data_melp.json';
@@ -70,7 +70,7 @@ function initPage() {
 
             }).join('');
             anchor.html(html);
-
+/*
             var latitude =  24.016667; // YOUR LATITUDE VALUE
             var longitude = -104.666667; // YOUR LONGITUDE VALUE
             
@@ -90,7 +90,7 @@ function initPage() {
               // title is shown when you hover over the marker
               title: latitude + ', ' + longitude 
             });            
-        
+ */       
 
         });
-}
+})();
