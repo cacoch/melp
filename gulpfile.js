@@ -1,7 +1,8 @@
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var pug = require('gulp-pug');
-var reload = browserSync.reload;
+const gulp = require('gulp');
+const browserSync = require('browser-sync');
+const pug = require('gulp-pug');
+const plumber = require('gulp-plumber');
+const reload = browserSync.reload;
 
 /**
  * copy jquery and xx to dist directory
@@ -56,6 +57,7 @@ gulp.task('templates', () => {
 
     return gulp
         .src('./src/*.pug')
+	.pipe(plumber())
         .pipe(
             pug({
 				locals: RESTAURANT,
@@ -63,6 +65,7 @@ gulp.task('templates', () => {
 				pretty : true
             })
         )
+	.pipe(plumber.stop())
         .pipe(gulp.dest('./dist/'));
 });
 
