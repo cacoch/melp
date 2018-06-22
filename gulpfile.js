@@ -84,5 +84,5 @@ gulp.task('default', ['templates', 'copy-deps', 'copy-deps1', 'copy-custom'], ()
 			//,directory : true
     });
 
-    gulp.watch(['./src/*.pug', './src/js/*.js', '.scr/css/*.css'] , ['pug-watch']);
+    gulp.watch(['./src/**/*.pug', './src/js/*.js', '.scr/css/*.css'] , ['pug-watch']);
 });
