@@ -32,8 +32,11 @@ $( "#nameSort" ).click( () => {
 		let str = el.outerHTML;
 		arrElem.push({ name : el.dataset.name, rating : el.dataset.rating, el : str})
 	});
-	arrElem.sort( (a,b) => {
-		return a.name.localeCompare(b.name);
+	arrElem.sort( (a,b) => { 
+	  var textA = a.name.toUpperCase();
+	  var textB = b.name.toUpperCase();
+
+	  return textA.localeCompare(textB);
 	});
 	
 	var result = arrElem.reduce( (acc, curr) =>{
@@ -43,10 +46,14 @@ $( "#nameSort" ).click( () => {
 	$('#content').replaceWith(result);
 });
 
-(function() {
+//var map;
+
+(function () {
     var template = $('#empty').html();
     var anchor = $('#content');
-    var dataURL = "http://localhost:3000/data10.json";
+	// var dataURL = "https://s3-us-west-2.amazonaws.com/lgoveabucket/data_melp.json"
+	var dataURL = "http://localhost:3000/data10.json";
+
     $.getJSON(dataURL)
         .fail(err => {
             console.log("Error with loading " + dataURL + JSON.stringify(err));
@@ -55,6 +62,7 @@ $( "#nameSort" ).click( () => {
             console.log("Loaded " + data.length + " records.");
             var html = data.map(el => {
                 return template
+		    .replace('[ID]', el.id)
                     .replace(/\[NAME\]/g, el.name)
                     .replace(/\[RATING\]/g, el.rating)
                     .replace(/\[URL\]/g, el.contact.site)
@@ -66,6 +74,27 @@ $( "#nameSort" ).click( () => {
 
             }).join('');
             anchor.html(html);
+/*
+            var latitude =  24.016667; // YOUR LATITUDE VALUE
+            var longitude = -104.666667; // YOUR LONGITUDE VALUE
+            
+            var myLatLng = {lat: latitude, lng: longitude};
+            
+            map = new google.maps.Map(document.getElementById("851f799f-0852-439e-b9b2-df92c43e7672"), {
+              center: myLatLng,
+              zoom: 14                    
+            });
+                    
+            var marker = new google.maps.Marker({
+              position: myLatLng,
+              map: map,
+              //title: 'Hello World'
+              
+              // setting latitude & longitude as title of the marker
+              // title is shown when you hover over the marker
+              title: latitude + ', ' + longitude 
+            });            
+  */      
 
         });
 })();
