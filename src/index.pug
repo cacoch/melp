@@ -6,9 +6,10 @@ html.no-js(lang="en")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		title Melp restaurant list 
 		link(rel="stylesheet" href="css/foundation.min.css")
-		link(rel="stylesheet" href="css/custom.css")
+		// link(rel="stylesheet" href="css/custom.css")
 	body
 		h1 Hello, world!
+
 		.button-group
 			a#ratingSort.button Rating 
 			a#nameSort.button Name 
@@ -20,6 +21,7 @@ html.no-js(lang="en")
 
 		#empty(style="display: none")
 			include container.pug	
+		// script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWeSvd8IhpjMOHadrBo3b_DV40xBjbKZk&callback=initPage" async defer)
 		script(src="js/jquery.min.js")
 		script(src="js/what-input.min.js")
 		script(src="js/foundation.min.js")
