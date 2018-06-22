@@ -53,3 +53,15 @@ Show recommendations about the nearest restaurants in the zone given a point in 
 * ZURB framework 
 * PUG
 * Gulp.js
+
+### Installing 
+```
+git clone https://github.com/cacoch/melp
+npm install 
+```
+
+### Local run
+This will compile and move all necesary files to ./dist directory. Then will spawn browser and serve files under ./dist directory.  
+```
+npm start 
+```
