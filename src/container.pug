@@ -1,24 +1,23 @@
-.grid-container.full(data-rating="[RATING]" data-name="[NAME]")
-	.grid-x.grid-padding-x
-		h2.cell [NAME] 
+.grid-x.grid-padding-x.address(data-rating="[RATING]" data-name="[NAME]")
+	h2.cell [NAME] 
 	.grid-x
 		.cell.large-8 Rating [RATING] 
-			//- include rating.pug
-			.grid-x
-				.cell.large-6
-					.cell URL 
-						a(href="[URL]") [URL] 
-					.cell EMAIL 
-						a(href="mailto:[EMAIL]") [EMAIL]
-					.cell PHONE [PHONE] 
-				.cell.large-6 
-					.cell STREET [STREET] 
-					.cell CITY [CITY] 
-					.cell STATE [STATE] 
+		//- include rating.pug
+		.grid-x
+			.cell.large-6
+				.cell URL 
+					a(href="[URL]") [URL] 
+				.cell EMAIL 
+					a(href="mailto:[EMAIL]") [EMAIL]
+				.cell PHONE [PHONE] 
+			.cell.large-6 
+				.cell STREET [STREET] 
+				.cell CITY [CITY] 
+				.cell STATE [STATE] 
 		.cell.large-4
-			.media-object.stack-for-small
-				.media-object-section
-					.thumbnail
-						img(src="https://placehold.it/500x312" alt="")
+		.media-object.stack-for-small
+			.media-object-section
+				.thumbnail
+					img(src="https://placehold.it/500x312" alt="")
 
-// set autoindent noexpandtab tabstop=4 shiftwidth=4
+//- set autoindent noexpandtab tabstop=4 shiftwidth=4
