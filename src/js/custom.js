@@ -3,49 +3,43 @@
  */
 
 
-$( "#ratingSort" ).click( () => {
-	console.log("Rating sort");
-	function sortEventsByOrder(a,b) {
+$("#ratingSort").click(() => {
+    console.log("Rating sort");
 
-	var startA = parseInt($(a).attr('data-rating'));
-	var startB = parseInt($(b).attr('data-rating'));	
-	return   startB - startA;
-}
+    var anchor = document.querySelector('#content');
+    var address = document.querySelectorAll('#content .address')
 
-$('#content').html($('#content .grid-x').sort(sortEventsByOrder));
+    Array.from(address).sort((a, b) => {
+            // a.dataset.title.toLowerCase().localeCompare(b.dataset.title.toLowerCase())
+            var startA = parseInt(a.dataset.rating);
+            var startB = parseInt(b.dataset.rating);
+            return startB - startA;
+        })
+        .forEach(el => anchor.appendChild(el));
+
 });
 
-$( "#nameSort" ).click( () => {
-	console.log("Click on Name");
-    var contents = $('#content');
-       console.log(contents); 
-	var elements = contents.children();
-	var arrElem = [];
-	elements.each( (i, el) => {
-		let str = el.outerHTML;
-		arrElem.push({ name : el.dataset.name, rating : el.dataset.rating, el : str})
-	});
-	arrElem.sort( (a,b) => { 
-	  var textA = a.name.toUpperCase();
-	  var textB = b.name.toUpperCase();
+$("#nameSort").click(() => {
+    var anchor = document.querySelector('#content');
+    var address = document.querySelectorAll('#content .address')
 
-	  return textA.localeCompare(textB);
-	});
-	
-	var result = arrElem.reduce( (acc, curr) =>{
-		return acc + curr.el;
-	}, '');
+    Array.from(address).sort((a, b) => {
+            // a.dataset.title.toLowerCase().localeCompare(b.dataset.title.toLowerCase())
+        var textA = a.dataset.name.toUpperCase();
+        var textB = b.dataset.name.toUpperCase();
 
-	$('#content').replaceWith(result);
+        return textA.localeCompare(textB);
+        })
+        .forEach(el => anchor.appendChild(el));
 });
 
 //var map;
 
-(function () {
+(function() {
     var template = $('#empty').html();
     var anchor = $('#content');
-	// var dataURL = "https://s3-us-west-2.amazonaws.com/lgoveabucket/data_melp.json"
-	var dataURL = "http://localhost:3000/data10.json";
+    // var dataURL = "https://s3-us-west-2.amazonaws.com/lgoveabucket/data_melp.json"
+    var dataURL = "http://localhost:3000/data10.json";
 
     $.getJSON(dataURL)
         .fail(err => {
@@ -55,7 +49,7 @@ $( "#nameSort" ).click( () => {
             console.log("Loaded " + data.length + " records.");
             var html = data.map(el => {
                 return template
-		    .replace('[ID]', el.id)
+                    .replace('[ID]', el.id)
                     .replace(/\[NAME\]/g, el.name)
                     .replace(/\[RATING\]/g, el.rating)
                     .replace(/\[URL\]/g, el.contact.site)
@@ -67,27 +61,27 @@ $( "#nameSort" ).click( () => {
 
             }).join('');
             anchor.html(html);
-/*
-            var latitude =  24.016667; // YOUR LATITUDE VALUE
-            var longitude = -104.666667; // YOUR LONGITUDE VALUE
-            
-            var myLatLng = {lat: latitude, lng: longitude};
-            
-            map = new google.maps.Map(document.getElementById("851f799f-0852-439e-b9b2-df92c43e7672"), {
-              center: myLatLng,
-              zoom: 14                    
-            });
-                    
-            var marker = new google.maps.Marker({
-              position: myLatLng,
-              map: map,
-              //title: 'Hello World'
-              
-              // setting latitude & longitude as title of the marker
-              // title is shown when you hover over the marker
-              title: latitude + ', ' + longitude 
-            });            
-  */      
+            /*
+                        var latitude =  24.016667; // YOUR LATITUDE VALUE
+                        var longitude = -104.666667; // YOUR LONGITUDE VALUE
+                        
+                        var myLatLng = {lat: latitude, lng: longitude};
+                        
+                        map = new google.maps.Map(document.getElementById("851f799f-0852-439e-b9b2-df92c43e7672"), {
+                          center: myLatLng,
+                          zoom: 14                    
+                        });
+                                
+                        var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: map,
+                          //title: 'Hello World'
+                          
+                          // setting latitude & longitude as title of the marker
+                          // title is shown when you hover over the marker
+                          title: latitude + ', ' + longitude 
+                        });            
+              */
 
         });
 })();
