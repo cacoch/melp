@@ -4,28 +4,21 @@
 
 
 $( "#ratingSort" ).click( () => {
-	console.log("Click on Rating");
-    var contents = $('#content');
-	var elements = contents.children();
-	var arrElem = [];
-	elements.each( (i, el) => {
-		let str = el.outerHTML;
-		arrElem.push({ name : el.dataset.name, rating : el.dataset.rating, el : str})
-	});
-	arrElem.sort( (a,b) => {
-		return a.rating - b.rating
-	});
-	
-	var result = arrElem.reduce( (acc, curr) =>{
-		return acc + curr.el;
-	}, '');
+	console.log("Rating sort");
+	function sortEventsByOrder(a,b) {
 
-	$('#content').replaceWith(result);
+	var startA = parseInt($(a).attr('data-rating'));
+	var startB = parseInt($(b).attr('data-rating'));	
+	return   startB - startA;
+}
+
+$('#content').html($('#content .grid-x').sort(sortEventsByOrder));
 });
 
 $( "#nameSort" ).click( () => {
 	console.log("Click on Name");
     var contents = $('#content');
+       console.log(contents); 
 	var elements = contents.children();
 	var arrElem = [];
 	elements.each( (i, el) => {
