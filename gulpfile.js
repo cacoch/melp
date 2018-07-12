@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const pug = require('gulp-pug');
 const plumber = require('gulp-plumber');
+const sass = require('gulp-sass');
 const reload = browserSync.reload;
 
 /**
@@ -78,6 +79,15 @@ gulp.task('templates', () => {
         .pipe(plumber.stop())
         .pipe(gulp.dest('./dist/'));
 });
+/**
+ * Sass task for live injecting into all browsers
+ */
+gulp.task('sass', function () {
+    return gulp.src('./src/scss/*.scss')
+        .pipe(sass()).on('error', sass.logError)
+        .pipe(gulp.dest('./dist/css'))
+        .pipe(reload({stream: true}));
+});
 
 /**
  *  * Important!!
@@ -91,11 +101,11 @@ gulp.task('pug-watch', ['templates', 'copy-custom'], () => {
 /**
  *  * Serve and watch the pug files for changes
  *   */
-gulp.task('default', ['templates', 'copy-deps', 'copy-deps1', 'copy-custom'], () => {
+gulp.task('default', ['templates', 'copy-deps', 'copy-deps1', 'copy-custom', 'sass'], () => {
     browserSync({
         server: './dist'
         //,directory : true
     });
-
+	gulp.watch('./src/scss/*.scss', ['sass']);
     gulp.watch(['./src/**/*.pug', './src/js/*.js', '.scr/css/*.css'], ['pug-watch']);
 });
